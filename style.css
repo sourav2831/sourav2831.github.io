@@ -1,0 +1,53 @@
+body{
+  text-align: center;
+  background-color: #283149;
+}
+table{
+  margin: auto;
+  height: 200px;
+  width: 200px;
+  table-layout: fixed;
+  overflow: hidden;
+  border-collapse: collapse;
+  border-style: hidden;
+}
+td{
+  border: 5px black solid;
+  text-align: center;
+  font-size: 50px;
+  overflow: hidden;
+}
+tr{
+  overflow: hidden;
+  table-layout: fixed;
+  font-family: "Arvo", cursive;
+  color: #4ECCA3;
+}
+td:hover{
+  background-color: lightgrey;
+}
+h1{
+  text-align: center;
+  margin: 30px;
+  font-family: "Arvo", cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 4rem;
+  color: #4ECCA3;
+
+}
+.hidden{
+  display: none;
+}
+div{
+  text-align: center;
+  margin: 30px;
+  font-family: 'Arvo', cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 4rem;
+  color: #4ECCA3;
+}
+strong{
+  font-family: "Arvo", cursive;
+  text-shadow: 5px 0 #232931;
+  color: #4ECCA3;
+}
