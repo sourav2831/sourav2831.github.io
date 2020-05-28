@@ -32,6 +32,7 @@ function makeMove(element,i,j){
   ticTacToe[i][j]=currPlayer;
   count++;
   document.querySelectorAll("td")[j+i*3].setAttribute("onclick","");
+  document.querySelector("form").classList.remove("hidden");
 }
 
   if(isWinner()){
