@@ -1,0 +1,100 @@
+body{
+  text-align: center;
+  background-color: #283149;
+}
+.board{
+  display: grid;
+  grid-template-columns: repeat(9,auto);
+  justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+
+}
+div{
+  font-size: 25px;
+}
+.cell{
+  height: 35px;
+  width: 35px;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  font-family: "Lobster", cursive;
+  justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: lightgray;
+}
+.green{
+  background-color: lightgreen;
+}
+.red{
+  background-color: red;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+table{
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  table-layout: fixed;
+  overflow: hidden;
+  border-collapse: collapse;
+
+}
+td{
+  border: 2px solid black;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  background-color: lightgray;
+}
+
+h1{
+  text-align: center;
+  margin: 30px;
+  font-family: "Lobster", cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 4rem;
+  color: #4ECCA3;
+
+}
+.hidden{
+  display: none;
+}
+strong{
+  font-family: "Lobster", cursive;
+  text-shadow: 5px 0 #232931;
+  color: #4ECCA3;
+  font-size: 4rem;
+}
+button{
+  background-color: #4ECCA3;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.disabled{
+  pointer-events: none;
+}
+.cell.ban:hover{
+   cursor: not-allowed;
+}
+#winningMessage{
+  text-align: center;
+  margin: 30px;
+  font-family: "Lobster", cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 2rem;
+  color: #4ECCA3;
+
+}

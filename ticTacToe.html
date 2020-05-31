@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" type="text/css" href="ticTacToe.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+
+  </head>
+  <body>
+    <h1>Tic-Tac-Toe</h1>
+    <form id="f" >
+      <strong>Player 1 Name:</strong><input placeholder="Enter name" type="text" name="name1" >&nbsp;&nbsp;
+      <strong>Player 2 Name:</strong><input placeholder="Enter name" type="text" name="name2">
+    </form>
+    <br>
+    <table class="hidden">
+      <button type="button" name="name3" onclick="submit()" class="btn btn-info">Play</button>
+          <button type="button" id="n" class="hidden" onclick="reset()">Reset</button>
+      <tr>
+        <td onclick="makeMove(this,0,0)">&nbsp;</td>
+        <td onclick="makeMove(this,0,1)">&nbsp;</td>
+        <td onclick="makeMove(this,0,2)">&nbsp;</td>
+      </tr>
+      <td onclick="makeMove(this,1,0)">&nbsp;</td>
+      <td onclick="makeMove(this,1,1)">&nbsp;</td>
+      <td onclick="makeMove(this,1,2)">&nbsp;</td>
+    </tr>
+    <td onclick="makeMove(this,2,0)">&nbsp;</td>
+    <td onclick="makeMove(this,2,1)">&nbsp;</td>
+    <td onclick="makeMove(this,2,2)">&nbsp;</td>
+  </tr>
+    </table>
+    <div id="win">
+
+    </div>
+
+    <script src="ticTacToe.js">
+
+    </script>
+  </body>
+</html>
