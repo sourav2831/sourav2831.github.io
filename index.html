@@ -1,41 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Tic-Tac-Toe</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
 
-  </head>
-  <body>
-    <h1>Tic-Tac-Toe</h1>
-    <form id="f" >
-      <strong>Player 1 Name:</strong><input placeholder="Enter name" type="text" name="name1" >&nbsp;&nbsp;
-      <strong>Player 2 Name:</strong><input placeholder="Enter name" type="text" name="name2">
-    </form>
-    <br>
-    <table class="hidden">
-      <button type="button" name="name3" onclick="submit()" class="btn btn-info">Play</button>
-          <button type="button" id="n" class="hidden" onclick="reset()">Reset</button>
-      <tr>
-        <td onclick="makeMove(this,0,0)">&nbsp;</td>
-        <td onclick="makeMove(this,0,1)">&nbsp;</td>
-        <td onclick="makeMove(this,0,2)">&nbsp;</td>
-      </tr>
-      <td onclick="makeMove(this,1,0)">&nbsp;</td>
-      <td onclick="makeMove(this,1,1)">&nbsp;</td>
-      <td onclick="makeMove(this,1,2)">&nbsp;</td>
-    </tr>
-    <td onclick="makeMove(this,2,0)">&nbsp;</td>
-    <td onclick="makeMove(this,2,1)">&nbsp;</td>
-    <td onclick="makeMove(this,2,2)">&nbsp;</td>
-  </tr>
-    </table>
-    <div id="win">
+    <title>Welcome</title>
+</head>
+<body>
+  <h1>Choose your game 🎮</h1>
+  <table>
+    <tr><td><a href="ticTacToe.html">Tic Tac Toe </a></td></tr>
+    <tr><td><a href="mineSweeper.html">Mine Sweeper</a></td></tr>
+    <tr><td><a href="drumKit.html">Drum Kit</a></td></tr>
+    <tr><td><a href="dicee.html">Dice Roll</a></td></tr>
+    <tr><td><a href="bomberMan.html">Bomber Man</a></td></tr>
+  </table>
+  <script src="index.js">
 
-    </div>
-
-    <script src="index.js">
-
-    </script>
-  </body>
+  </script>
+</body>
 </html>

@@ -1,72 +1,110 @@
-var a=[];
-var sub=0;
-function submit(){
-  let id=document.getElementById("f");
-  a.push(id[0].value);
-  a.push(id[1].value);
-  document.querySelector("button").classList.add("hidden");
-  document.querySelector("form").classList.add("hidden");
-  document.querySelector("table").classList.remove("hidden");
-  sub=1;
+var playButton=document.getElementById('play');
+var restartButton=document.getElementById('restart');
+var board=document.getElementById('board');
+var cells=document.querySelectorAll(".cell");
+var bombArray=[];
+var score=0;
+var s=0;
+function play(){
+  playButton.classList.add("hidden");
+  board.classList.remove("hidden");
+  generateBombArray();
+  cells.forEach(cell => {
+    cell.addEventListener("contextmenu",contextMenu);
+    cell.addEventListener("click",getClicked);
+  });
 }
-
-var ticTacToe=[
-  ["","",""],
-  ["","",""],
-  ["","",""]
-];
-var winCombination=[
-  [[0,0],[0,1],[0,2]],
-  [[1,0],[1,1],[1,2]],
-  [[2,0],[2,1],[2,2]],
-  [[0,0],[1,0],[2,0]],
-  [[0,1],[1,1],[2,1]],
-  [[0,2],[1,2],[2,2]],
-  [[0,0],[1,1],[2,2]],
-  [[0,2],[1,1],[2,0]]
-]
-var currPlayer="X";
-var count=0;
-function makeMove(element,i,j){
-  if(sub===1){
-  element.innerHTML=currPlayer;
-  ticTacToe[i][j]=currPlayer;
-  count++;
-  document.querySelectorAll("td")[j+i*3].setAttribute("onclick","");
-
+function contextMenu(e){
+  e.preventDefault();
+  let element=e.path[0].getAttribute("id");
+  if(document.getElementById(element).innerHTML==="" || document.getElementById(element).innerHTML==="🚩")
+  toggleFlag(element);
 }
-
-  if(isWinner()){
-    let winPlayer=document.getElementById("win");
-    winPlayer.innerHTML=currPlayer==="X"?a[0]+" Wins 🚩":a[1]+" Wins 🚩";
-    for(var l=0;l<document.querySelectorAll("td").length;l++){
-      document.querySelectorAll("td")[l].setAttribute("onclick","");
-    }
-    document.getElementById("n").classList.remove("hidden");
-  }
-  if(count===9){
-    let winPlayer=document.getElementById("win");
-    winPlayer.innerHTML="Draw 😔";
-    document.getElementById("n").classList.remove("hidden");
-  }
-  currPlayer=currPlayer==="X"?"0":"X";
-
-}
-function isWinner(){
-  for(let i=0;i<8;i++){
-    var check=0;
-    for(let j=0;j<3;j++){
-      if(ticTacToe[winCombination[i][j][0]][winCombination[i][j][1]]!=currPlayer){
-        check=1;
-        break;
-      }
-    }
-    if(check==0){
-      return true;
+function generateBombArray(){
+  let count=0;
+  while(count!=9){
+    let newNumber=Math.floor(Math.random()*81)+1;
+    if(!bombArray.includes(newNumber)){
+      bombArray.push(newNumber);
+      count++;
     }
   }
-  return false;
 }
-function reset(){
-  location.reload();
+function getClicked(event){
+  if(event.target.innerHTML==="🚩"){
+    // do nothing
+  }
+  else if(!bombArray.includes(parseInt(event.target.getAttribute("id"),10))){
+    let bombsNear=0;
+    event.target.classList.add("green");
+    event.target.classList.add("ban");
+    if((parseInt(event.target.getAttribute("id"),10))%9!=0 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)+1)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10))%9!=1 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)-1)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10)-9)>=1 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)-9)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10)+9)<=81 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)+9)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10)+10)<=81 && (parseInt(event.target.getAttribute("id"),10)+9)%9!=0 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)+10)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10)+8)<=81 && (parseInt(event.target.getAttribute("id"),10)+9)%9!=1 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)+8)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10)-10)>=1 && (parseInt(event.target.getAttribute("id"),10)-9)%9!=1 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)-10)){
+      bombsNear++;
+    }
+    if((parseInt(event.target.getAttribute("id"),10)-8)>=1 && (parseInt(event.target.getAttribute("id"),10)-9)%9!=0 && bombArray.includes(parseInt(event.target.getAttribute("id"),10)-8)){
+      bombsNear++;
+    }
+    if(event.target.innerHTML===""){
+      score++;
+    }
+    event.target.innerHTML=bombsNear;
+    if(score===72){
+      document.getElementById("winningMessage").innerHTML="CONGRATULATIONS! You won the game";
+      document.getElementById("restart").classList.remove("hidden");
+      document.querySelector(".board").classList.add("disabled");
+    }
+    else
+    document.getElementById("winningMessage").innerHTML="Your score is "+score;
+  }
+  else if(bombArray.includes(parseInt(event.target.getAttribute("id"),10))){
+    for(let i=0;i<9;i++){
+      document.getElementById(bombArray[i]).classList.add("red");
+      document.getElementById(bombArray[i]).innerHTML="💣";
+    }
+    document.getElementById("winningMessage").innerHTML="Your score is "+score;
+    document.getElementById("restart").classList.remove("hidden");
+    document.querySelector(".board").classList.add("disabled");
+  }
+}
+function toggleFlag(e) {
+  if(document.getElementById(e).innerHTML==="🚩"){
+    document.getElementById(e).innerHTML="";
+  }
+  else{
+    document.getElementById(e).innerHTML="🚩";
+  }
+}
+function restart(){
+  bombArray=[];
+  score=0;
+  playButton.classList.remove("hidden");
+  board.classList.add("hidden");
+  cells.forEach(cell => {
+    cell.innerHTML="";
+    cell.classList.remove("red");
+    cell.classList.remove("green");
+    cell.classList.remove("ban");
+    cell.removeEventListener("contextmenu",contextMenu);
+  });
+document.querySelector(".board").classList.remove("disabled");
+document.getElementById("winningMessage").innerHTML="";
+document.getElementById("restart").classList.add("hidden");
 }
